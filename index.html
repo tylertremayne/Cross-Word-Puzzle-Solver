@@ -8,8 +8,79 @@
 </head>
 <body>
     
-    <h1 class="h6">Hello World</h1>
-    <button class="btn btn-primary">Hello</button>
+    <div class="container py-4">
+        <div class="inputs" style="width: fit-content;">
+            <form>
+                <div class="input-group mb-3">
+                    <label for="row-input" class="mx-4" style="margin: auto;">Number of Rows:</label>
+                    <input type="number" min="1" class="form-control" id="row-input" aria-label="Example text with button addon" aria-describedby="button-addon1" value="5">
+                    <button class="btn btn-outline-success" type="button" id="button-addon1">OK</button>
+                </div>
+                <div class="input-group mb-3">
+                    <label for="cols-input" class="mx-4" style="margin: auto;">Number of Columns:</label>
+                    <input type="number" min="1" class="form-control" id="cols-input" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" value="5">
+                    <button class="btn btn-outline-success" type="button" id="button-addon1">OK</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="container border border-secondary border-2 rounded-2">
+            <div class="grid-div my-4 mx-3">
+                <table class="table table-bordered">
+                    <tbody style="text-align: center;">
+                    
+                        <tr>
+                            <td>P</td>
+                            <td>S</td>
+                            <td>T</td>
+                            <td>O</td>
+                            <td>A</td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>S</td>
+                            <td>T</td>
+                            <td>O</td>
+                            <td>A</td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>S</td>
+                            <td>T</td>
+                            <td>O</td>
+                            <td>A</td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>S</td>
+                            <td>T</td>
+                            <td>O</td>
+                            <td>A</td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>S</td>
+                            <td>T</td>
+                            <td>O</td>
+                            <td>A</td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>    
+
+        <div class="search-word my-4" style="width: fit-content;">
+            <form>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search Word" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <button class="btn btn-outline-dark" type="button" id="button-addon1">Search</button>
+                </div>
+
+            </form>
+        </div>
+            
+    </div>
 
 </body>
 
