@@ -8,38 +8,78 @@ const colsBtn = document.getElementById("colsButton");
 let userSearch = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-button");
 
-let tableBody = document.getElementById("tableOfElements");
-
-const updateTable = document.getElementById("save-button");
+const updateBtn = document.getElementById("save-button");
 
 let inputEvents = document.addEventListener("input", inputValidation);
 
 let numOfCols = 5;
 let numOfRows = 5;
 
+let tableContents = [];
+
 function buildTable(){
-    if(numOfRows <= 0 || numOfCols <= 0){
-       console.log("return");
-        return
-    }
 
-    tableBody.innerHTML = "";
+    let table = document.getElementById("tableOfElements");
 
-    for(let i = 0; i < numOfRows; i++){
-        let row = document.createElement("tr");
+    table.innerHTML = "";
 
-        for(let j = 0; j < numOfCols; j++){
-            let cell = document.createElement("td");
-            // cell.textContent = ` Row ${i + 1} Col ${j + 1}`;
-            row.appendChild(cell);
+    tableContents.forEach((row) => {
+        let rowElement = document.createElement("tr");
+        row.forEach((cell) =>{
+            let dataElement = document.createElement("td");
+            dataElement.setAttribute("contenteditable" , "true");
+            dataElement.textContent = cell;
+
+            rowElement.appendChild(dataElement);
+        })
+        table.appendChild(rowElement);
+    })
+    
+}
+
+function modifyTable(){
+
+    let holdValues = tableContents;
+    
+    tableContents = [];
+
+    for(let r = 0; r < numOfRows; r++){
+
+        let row = [];
+    
+        for(let c = 0; c< numOfCols; c++){
+
+            row.push(``);
+
         }
-        tableBody.appendChild(row);
+
+        tableContents.push(row);
     }
+
+    for(let i = 0; i < tableContents.length; i++){
+
+        for(let j = 0; j < tableContents[i].length; j++){
+
+            if(i < holdValues.length && j < holdValues[i].length){
+
+                tableContents[i][j] = holdValues[i][j];
+
+            } else{
+
+                tableContents[i][j] = "";
+                
+            }
+
+        }
+    }
+
+
+    buildTable();
+
 }
 
 function readTable(){
-
-    let grid = [];
+    tableContents = [];
 
     let rows = document.querySelectorAll("tr");
     
@@ -52,12 +92,11 @@ function readTable(){
             rowData.push(cell.textContent);
         })
 
-        grid.push(rowData);
+        tableContents.push(rowData);
     })
-
-    console.log(grid);
-    return grid;
 }
+
+readTable();
 
 function inputValidation(){
 
@@ -67,24 +106,25 @@ function inputValidation(){
             cell.addEventListener("input", () => {
                 let val = cell.innerText.toUpperCase()
 
-                val = val.replace(/[^A-Z]/g, "").slice(0,1);
+                val = val.replace(/[^A-Z] && [^0-9]/g, "").slice(0,1);
                 cell.innerText = val;
             })
     })
 }
 
-updateTable.addEventListener("click", readTable())
+updateBtn.addEventListener("click", readTable)
 
 rowsBtn.addEventListener("click", function(){
+
     numOfRows = parseInt(rowInput.value);
     // console.log(numOfRows);
-    buildTable();
+    modifyTable();
 });
 
 colsBtn.addEventListener("click", function(){
     numOfCols = parseInt(colInput.value);
     // console.log(numOfCols);
-    buildTable();
+    modifyTable();
 });
 
 searchBtn.addEventListener("click", function(){
